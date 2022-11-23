@@ -24,3 +24,5 @@ module.exports = (app) => {
       });
   });
 };
+
+// Delete Data par la method Destroy
