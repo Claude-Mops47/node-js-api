@@ -1,3 +1,15 @@
+const validTypes = [
+  "Plante",
+  "Poison",
+  "Feu",
+  "Insecte",
+  "Vol",
+  "Normal",
+  "Electrik",
+  "Fée",
+  "Eau",
+];
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     "Pokemon",
@@ -10,18 +22,56 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: { msg: "Le nom est déjà pris." },
+        validate: {
+          notEmpty: { msg: "Le nom ne peut pas être vide" },
+          notNull: { msg: "Le nom est une propriété require." },
+          max: { args: [25], msg: "maxi 25 caractères." },
+        },
       },
       hp: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          isInt: {
+            msg: "Utilisez uniquement des entiers pour les points de vie.",
+          },
+          notNull: { msg: "Les points de vie sont une propriété require." },
+          min: {
+            args: [0],
+            msg: "Les points de vie doivent être supérieurs ou égales à 0.",
+          },
+          max: {
+            args: [999],
+            msg: "Les points de vie doivent être inférieurs ou égales à 999.",
+          },
+        },
       },
       cp: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          isInt: {
+            msg: "Utilisez uniquement des entiers pour les points de degâts.",
+          },
+          notNull: { msg: "Les points de degâts sont une propriété require." },
+          min: {
+            args: [0],
+            msg: "Les points de degâts doivent être supérieurs ou égales à 0.",
+          },
+          max: {
+            args: [99],
+            msg: "Les points de degâts doivent être inférieurs ou égales à 99.",
+          },
+        },
       },
       picture: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          isUrl: { msg: "Utilisez uniquement une URL valide pour l'image." },
+          notNull: { msg: "L'image est propriété require." },
+        },
       },
       types: {
         type: DataTypes.STRING,
@@ -31,6 +81,25 @@ module.exports = (sequelize, DataTypes) => {
         },
         set(types) {
           this.setDataValue("types", types.join());
+        },
+        validate: {
+          isTypeValid(value) {
+            if (!value) {
+              throw new Error("Un pokémon doit au moins avoir un type.");
+            }
+            if (value.split(",").length > 3) {
+              throw new Error(
+                "Un pokémon ne peux pas avoir plus de trois types."
+              );
+            }
+            value.split(",").forEach((type) => {
+              if (!validTypes.includes(type)) {
+                throw new Error(
+                  `Le type d'un pokémon doit appartenir à la liste suivante : ${validTypes}`
+                );
+              }
+            });
+          },
         },
       },
     },
