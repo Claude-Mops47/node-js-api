@@ -1,14 +1,4 @@
-const validTypes = [
-  "Plante",
-  "Poison",
-  "Feu",
-  "Insecte",
-  "Vol",
-  "Normal",
-  "Electrik",
-  "Fée",
-  "Eau",
-];
+const validTypes = require("./listValidTypes");
 
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
