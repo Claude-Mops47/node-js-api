@@ -12,6 +12,7 @@ module.exports = (app) => {
         const message = "Un pokemon a bien été trouvé.";
         res.json({ message, data: pokemon });
       })
+      // Gestion des erreurs avant d'envoyer la requête à la base de données.
       .catch((error) => {
         const message =
           "Le pokemon n'a pas pu être récupéré. Réessayez dans un instants.";

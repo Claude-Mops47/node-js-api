@@ -77,11 +77,13 @@ module.exports = (sequelize, DataTypes) => {
         set(types) {
           this.setDataValue("types", types.join());
         },
+        // Validation avant d'envoyer la requête à la base de données.
         validate: {
           isTypeValid(value) {
             if (!value) {
               throw new Error("Un pokémon doit au moins avoir un type.");
             }
+            // Contrainte avant d'envoyer la requête à la base de données.
             if (value.split(",").length > 3) {
               throw new Error(
                 "Un pokémon ne peux pas avoir plus de trois types."
