@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        // Verification name unique dans la base de données.
         unique: { msg: "Le nom est déjà pris." },
+        // Validation avant d'envoyer la requête à la base de données.
         validate: {
           notEmpty: { msg: "Le nom ne peut pas être vide" },
           notNull: { msg: "Le nom est une propriété require." },
@@ -22,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       hp: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        // Validation avant d'envoyer la requête à la base de données.
         validate: {
           isInt: {
             msg: "Utilisez uniquement des entiers pour les points de vie.",
@@ -40,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       cp: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        // Validation avant d'envoyer la requête à la base de données.
         validate: {
           isInt: {
             msg: "Utilisez uniquement des entiers pour les points de degâts.",
@@ -58,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
       picture: {
         type: DataTypes.STRING,
         allowNull: false,
+        // Validation avant d'envoyer la requête à la base de données.
         validate: {
           isUrl: { msg: "Utilisez uniquement une URL valide pour l'image." },
           notNull: { msg: "L'image est propriété require." },
