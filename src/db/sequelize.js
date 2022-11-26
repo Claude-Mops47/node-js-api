@@ -26,6 +26,7 @@ const initDb = () => {
   });
 };
 
+// Exportation de module
 module.exports = {
   initDb,
   Pokemon,
