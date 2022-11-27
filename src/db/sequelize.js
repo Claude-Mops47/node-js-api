@@ -2,6 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const PokemonModel = require("../models/pokemon");
 const UserModel = require("../models/user");
 const pokemons = require("./mock-pokemon");
+const bcrypt = require("bcrypt");
 
 const sequelize = new Sequelize("pokedex", "root", "Secret Key", {
   host: "localhost",
@@ -24,10 +25,11 @@ const initDb = () => {
         types: pokemon.types,
       }).then((pokemon) => console.log(pokemon.toJSON()));
     });
-    User.create({
-      username: "Mopeno",
-      password: "Winds",
-    }).then((user) => console.log(user.toJSON()));
+
+    bcrypt
+      .hash("Winds", 10)
+      .then((hash) => User.create({ username: "Mopeno", password: hash }))
+      .then((user) => console.log(user.toJSON()));
 
     console.log("La base de donnée a bien été initialisée !");
   });

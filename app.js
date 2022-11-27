@@ -23,6 +23,8 @@ require("./src/routes/createPokemon")(app);
 require("./src/routes/updatePokemon")(app);
 require("./src/routes/deletePokemon")(app);
 
+require("./src/auth/login")(app);
+
 //* On declare la gestion des erreurs 404
 app.use(({ res }) => {
   const message =
