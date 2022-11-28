@@ -27,8 +27,8 @@ const initDb = () => {
     });
 
     bcrypt
-      .hash("Winds", 10)
-      .then((hash) => User.create({ username: "Mopeno", password: hash }))
+      .hash("winds", 10)
+      .then((hash) => User.create({ username: "mopeno", password: hash }))
       .then((user) => console.log(user.toJSON()));
 
     console.log("La base de donnée a bien été initialisée !");

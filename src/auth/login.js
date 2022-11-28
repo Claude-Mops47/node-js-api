@@ -31,7 +31,7 @@ module.exports = (app) => {
       })
       .catch((error) => {
         const message =
-          "L'utilisateur n'a pas être connecté. Réessayez dans un instants.";
+          "L'utilisateur n'a pas pu être connecté. Réessayez dans un instants.";
         return res.json({ message, data: error });
       });
   });
