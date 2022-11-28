@@ -4,7 +4,6 @@
   "description": "An awesome API Rest to handle some client.",
   "main": "app.js",
   "scripts": {
-    "deploy": "node app.js",
     "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=development nodemon app.js"
   },
