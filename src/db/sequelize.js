@@ -4,12 +4,23 @@ const UserModel = require("../models/user");
 const pokemons = require("./mock-pokemon");
 const bcrypt = require("bcrypt");
 
-const sequelize = new Sequelize("pokedex", "root", "Secret Key", {
-  host: "localhost",
-  dialect: "mysql",
-  // dialectOptions: { timezone: "Etc/GMT-2" },
-  logging: false,
-});
+let sequelize;
+
+if (process.env.NODE_ENV === "production") {
+  sequelize = new Sequelize(" ", " ", " ", {
+    host: " ",
+    dialect: "mysql",
+    // dialectOptions: { timezone: "Etc/GMT-2" },
+    logging: true,
+  });
+} else {
+  sequelize = new Sequelize("pokedex", "root", "Secret Key", {
+    host: "localhost",
+    dialect: "mysql",
+    // dialectOptions: { timezone: "Etc/GMT-2" },
+    logging: false,
+  });
+}
 
 const Pokemon = PokemonModel(sequelize, DataTypes);
 const User = UserModel(sequelize, DataTypes);
