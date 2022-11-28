@@ -7,8 +7,8 @@ const bcrypt = require("bcrypt");
 let sequelize;
 
 if (process.env.NODE_ENV === "production") {
-  sequelize = new Sequelize(" ", " ", " ", {
-    host: " ",
+  sequelize = new Sequelize("pokedex", "root", "Secret Key", {
+    host: "localhost",
     dialect: "mysql",
     // dialectOptions: { timezone: "Etc/GMT-2" },
     logging: true,
