@@ -2,13 +2,17 @@ const express = require("express");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const sequelize = require("./src/db/sequelize");
+const cors = require("cors");
 
 //* Sever
 const app = express();
 const port = process.env.PORT || 3000;
 
 //* Middleware
-app.use(favicon(__dirname + "/favicon.ico")).use(bodyParser.json());
+app
+  .use(favicon(__dirname + "/favicon.ico"))
+  .use(bodyParser.json())
+  .use(cors());
 
 sequelize.initDb();
 
