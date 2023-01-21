@@ -36,9 +36,10 @@ const initDb = () => {
         types: pokemon.types,
       }).then((pokemon) => console.log(pokemon.toJSON()));
     });
-
+    // modifier pass
+    pass = "winds";
     bcrypt
-      .hash("winds", 10)
+      .hash(pass, 10)
       .then((hash) => User.create({ username: "mopeno", password: hash }))
       .then((user) => console.log(user.toJSON()));
 
