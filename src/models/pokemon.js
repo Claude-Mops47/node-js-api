@@ -1,3 +1,4 @@
+const { Sequelize } = require("sequelize");
 const validTypes = require("./listValidTypes");
 
 module.exports = (sequelize, DataTypes) => {
