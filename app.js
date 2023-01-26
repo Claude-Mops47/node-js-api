@@ -22,6 +22,8 @@ app.get("/", (req, res) => {
   res.json("Hello, connexion réussi  !");
 });
 
+// app.use("/user", registerRoutes);
+
 //* Ici, nous placerons nos futurs points de terminaison.
 require("./src/routes/findAllPokemons")(app);
 require("./src/routes/findPokemonByPk")(app);
@@ -29,7 +31,13 @@ require("./src/routes/createPokemon")(app);
 require("./src/routes/updatePokemon")(app);
 require("./src/routes/deletePokemon")(app);
 
+// Users
 require("./src/auth/login")(app);
+require("./src/auth/register")(app);
+require("./src/auth/findUser")(app);
+require("./src/auth/findAllUsers")(app);
+require("./src/auth/deleteUser")(app);
+require("./src/auth/updateUser")(app);
 
 //* On declare la gestion des erreurs 404
 app.use(({ res }) => {
