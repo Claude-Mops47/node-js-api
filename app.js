@@ -34,10 +34,11 @@ require("./src/routes/deletePokemon")(app);
 // Users
 require("./src/auth/login")(app);
 require("./src/auth/register")(app);
-require("./src/auth/findUser")(app);
-require("./src/auth/findAllUsers")(app);
-require("./src/auth/deleteUser")(app);
-require("./src/auth/updateUser")(app);
+// Routes users!!
+require("./src/auth/routes/findUser")(app);
+require("./src/auth/routes/findAllUsers")(app);
+require("./src/auth/routes/deleteUser")(app);
+require("./src/auth/routes/updateUser")(app);
 
 //* On declare la gestion des erreurs 404
 app.use(({ res }) => {
