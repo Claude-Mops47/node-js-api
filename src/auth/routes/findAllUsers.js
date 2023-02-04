@@ -5,16 +5,21 @@ module.exports = (app) => {
     User.findAll()
       .then((users) => {
         if (!users) {
-          const message = "Aucun utilisateur trouvé";
-          return res.status(404).json({ message });
+          return res.status(404).json({ message: "Aucun utilisateur trouvé" });
         }
-        const message = "La liste des utilisateurs a été bien récupérée";
-        return res.json({ message, data: users });
+        return res.json({
+          message: "La liste des utilisateurs a été bien récupérée",
+          data: users,
+        });
       })
       .catch((err) => {
-        const message =
-          "Une erreur est survenue lors de la récupération des utilisateurs";
-        return res.status(500).json({ message, data: err });
+        return res
+          .status(500)
+          .json({
+            message:
+              "Une erreur est survenue lors de la récupération des utilisateurs",
+            data: err,
+          });
       });
   });
 };

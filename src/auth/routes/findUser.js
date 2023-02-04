@@ -5,11 +5,11 @@ module.exports = (app) => {
     User.findByPk(req.params.id)
       .then((user) => {
         if (!user) {
-          const message = "Utilisateur non trouvé";
-          return res.status(404).json({ message });
+          return res.status(404).json({ message: "Utilisateur non trouvé" });
         }
-        const message = "Utilisateur trouvé";
-        return res.status(200).json({ message, data: user });
+        return res
+          .status(200)
+          .json({ message: "Utilisateur trouvé", data: user });
       })
       .catch((err) => {
         return res.status(500).json({

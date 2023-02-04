@@ -9,17 +9,14 @@ module.exports = (app) => {
     })
       .then((deleted) => {
         if (!deleted) {
-          const message = "Utilisateur non trouvé";
-          return res.status(404).json({ message });
+          return res.status(404).json({ message: "Utilisateur non trouvé" });
         }
-        const message = "Utilisateur supprimé avec succès";
-        return res.json({ message });
+        return res.json({ message: "Utilisateur supprimé avec succès" });
       })
       .catch((err) => {
-        const message =
-          "Une erreur est survenue lors de la suppression de l'utilisateur";
         return res.status(500).json({
-          message,
+          message:
+            "Une erreur est survenue lors de la suppression de l'utilisateur",
           data: err,
         });
       });
