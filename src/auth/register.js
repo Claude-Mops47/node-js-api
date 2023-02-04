@@ -24,16 +24,20 @@ module.exports = (app) => {
         // Générez un sel pour le hachage
         bcrypt.genSalt(10, (err, salt) => {
           if (err) {
-            return res.status(500).json({
-              message: "Une erreur est survenue lors de l'inscription 1",
-            });
+            return res
+              .status(500)
+              .json({
+                message: "Une erreur est survenue lors de l'inscription",
+              });
           }
           // Hash le mot de passe
           bcrypt.hash(req.body.password, salt, (err, hash) => {
             if (err) {
-              return res.status(500).json({
-                message: "Une erreur est survenue lors de l'inscription 2",
-              });
+              return res
+                .status(500)
+                .json({
+                  message: "Une erreur est survenue lors de l'inscription",
+                });
             }
             // Enregistrez l'utilisateur dans la base de données
             User.create({
@@ -62,7 +66,7 @@ module.exports = (app) => {
               })
               .catch((err) => {
                 return res.status(500).json({
-                  message: "Une erreur est survenue lors de l'inscription 3",
+                  message: "Une erreur est survenue lors de l'inscription",
                 });
               });
           });

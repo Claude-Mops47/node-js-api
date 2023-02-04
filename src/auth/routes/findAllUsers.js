@@ -8,7 +8,7 @@ module.exports = (app) => {
           const message = "Aucun utilisateur trouvé";
           return res.status(404).json({ message });
         }
-        const message = "La liste des utilisateurs a été bien récupérer";
+        const message = "La liste des utilisateurs a été bien récupérée";
         return res.json({ message, data: users });
       })
       .catch((err) => {
