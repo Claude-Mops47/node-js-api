@@ -5,13 +5,13 @@ const sequelize = require("./src/db/sequelize");
 const cors = require("cors");
 const morgan = require("morgan");
 
-//* Sever
+// Sever
 const app = express();
 const portNumber = process.env.PORT || 3001;
 
-//* Middleware
+// Middleware
 app
-  .use(favicon(__dirname + "/favicon.ico"))
+  .use(favicon(__dirname + "/egg.ico"))
   .use(morgan("dev"))
   .use(cors())
   .use(bodyParser.json());
@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
   res.json("Hello, connexion réussi  !");
 });
 
-// * Ici, nous placerons nos futurs points de terminaison.
+// Ici, nous placerons nos futurs points de terminaison.
 require("./src/routes/findAllPokemons")(app);
 require("./src/routes/findPokemonByPk")(app);
 require("./src/routes/createPokemon")(app);
