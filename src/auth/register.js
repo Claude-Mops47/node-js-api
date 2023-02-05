@@ -6,41 +6,38 @@ const privateKey = require("../auth/private_key");
 module.exports = (app) => {
   app.post("/api/register", async (req, res) => {
     try {
-      // Check if the registration information is valid
+      // Vérifier si les informations d'inscription sont valides
       if (!req.body.username || !req.body.password) {
         return res.status(400).json({
-          message: "Please enter a valid username and password",
+          message: "Veuillez saisir un identifiant et un mot de passe valides",
         });
       }
-
-      // Check if the username already exists
+      // Vérifie si le nom d'utilisateur existe déjà
       const existingUser = await User.findOne({
         where: { username: req.body.username },
       });
       if (existingUser) {
-        return res
-          .status(400)
-          .json({ message: "This username already exists" });
+        return res.status(400).json({ message: "Cet identifiant existe déjà" });
       }
 
-      // Generate a salt for hashing
+      // Génère un sel pour le hachage
       const salt = await bcrypt.genSalt(10);
 
-      // Hash the password
+      // Hachage du mot de passe
       const hash = await bcrypt.hash(req.body.password, salt);
 
-      // Save the user to the database
+      // Enregistre l'utilisateur dans la base de données
       const user = await User.create({
         username: req.body.username,
         password: hash,
       });
 
-      // Generate an authentication token for the user
+      // Génère un jeton d'authentification pour l'utilisateur
       const token = jwt.sign({ id: user.id }, privateKey, { expiresIn: "1h" });
 
-      // Return a response with success status and the authentication token
+      // Renvoie une réponse avec le statut de réussite et le jeton d'authentification
       return res.status(201).json({
-        message: "Registration successful",
+        message: "inscription réussi!",
         token,
         user: {
           id: user.id,
@@ -49,80 +46,8 @@ module.exports = (app) => {
       });
     } catch (err) {
       return res.status(500).json({
-        message: "An error occurred during registration",
+        message: "Une erreur s'est produite lors de l'inscription",
       });
     }
   });
 };
-
-// module.exports = (app) => {
-//   app.post("/api/register", (req, res) => {
-//     // Vérifiez si les informations d'inscription sont valides
-//     if (!req.body.username || !req.body.password) {
-//       return res.status(400).json({
-//         message:
-//           "Veuillez entrer un nom d'utilisateur et un mot de passe valides",
-//       });
-//     }
-//     // Vérifiez si le nom d'utilisateur existe déjà
-//     User.findOne({ where: { username: req.body.username } }).then(
-//       (existingUser) => {
-//         if (existingUser) {
-//           return res
-//             .status(400)
-//             .json({ message: "Ce nom d'utilisateur existe déjà" });
-//         }
-//         // Générez un sel pour le hachage
-//         bcrypt.genSalt(10, (err, salt) => {
-//           if (err) {
-//             return res
-//               .status(500)
-//               .json({
-//                 message: "Une erreur est survenue lors de l'inscription",
-//               });
-//           }
-//           // Hash le mot de passe
-//           bcrypt.hash(req.body.password, salt, (err, hash) => {
-//             if (err) {
-//               return res
-//                 .status(500)
-//                 .json({
-//                   message: "Une erreur est survenue lors de l'inscription",
-//                 });
-//             }
-//             // Enregistrez l'utilisateur dans la base de données
-//             User.create({
-//               username: req.body.username,
-//               password: hash,
-//             })
-//               .then((user) => {
-//                 // Générez un jeton d'authentification pour l'utilisateur
-//                 const token = jwt.sign(
-//                   { id: user.id },
-//                   privateKey,
-//                   //   process.env.JWT_SECRET,
-//                   {
-//                     expiresIn: "1h",
-//                   }
-//                 );
-//                 // Renvoyez une réponse avec un statut de succès et le jeton d'authentification
-//                 return res.status(201).json({
-//                   message: "Inscription réussie",
-//                   token: token,
-//                   user: {
-//                     id: user.id,
-//                     username: user.username,
-//                   },
-//                 });
-//               })
-//               .catch((err) => {
-//                 return res.status(500).json({
-//                   message: "Une erreur est survenue lors de l'inscription",
-//                 });
-//               });
-//           });
-//         });
-//       }
-//     );
-//   });
-// };

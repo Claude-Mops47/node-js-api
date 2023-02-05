@@ -7,14 +7,14 @@ const morgan = require("morgan");
 
 //* Sever
 const app = express();
-const port = process.env.PORT || 3001;
+const portNumber = process.env.PORT || 3001;
 
 //* Middleware
 app
   .use(favicon(__dirname + "/favicon.ico"))
   .use(morgan("dev"))
-  .use(bodyParser.json())
-  .use(cors());
+  .use(cors())
+  .use(bodyParser.json());
 
 sequelize.initDb();
 
@@ -22,15 +22,12 @@ app.get("/", (req, res) => {
   res.json("Hello, connexion réussi  !");
 });
 
-// app.use("/user", registerRoutes);
-
-//* Ici, nous placerons nos futurs points de terminaison.
+// * Ici, nous placerons nos futurs points de terminaison.
 require("./src/routes/findAllPokemons")(app);
 require("./src/routes/findPokemonByPk")(app);
 require("./src/routes/createPokemon")(app);
 require("./src/routes/updatePokemon")(app);
 require("./src/routes/deletePokemon")(app);
-
 // Users
 require("./src/auth/login")(app);
 require("./src/auth/register")(app);
@@ -40,15 +37,15 @@ require("./src/auth/routes/findAllUsers")(app);
 require("./src/auth/routes/deleteUser")(app);
 require("./src/auth/routes/updateUser")(app);
 
-//* On declare la gestion des erreurs 404
+// Handle 404 error
 app.use(({ res }) => {
   const message =
     "Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.";
   res.status(404).json({ message });
 });
 
-app.listen(port, () =>
+app.listen(portNumber, () =>
   console.log(
-    `Notre application Node est démarrée sur : http://localhost:${port}`
+    `Serveur en cours d'exécution sur le port: http://localhost:${portNumber}`
   )
 );

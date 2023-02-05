@@ -13,13 +13,11 @@ module.exports = (app) => {
         });
       })
       .catch((err) => {
-        return res
-          .status(500)
-          .json({
-            message:
-              "Une erreur est survenue lors de la récupération des utilisateurs",
-            data: err,
-          });
+        return res.status(500).json({
+          message:
+            "Une erreur est survenue lors de la récupération des utilisateurs",
+          data: err,
+        });
       });
   });
 };

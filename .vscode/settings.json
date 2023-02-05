@@ -56,6 +56,7 @@
     "modèle",
     "modifié",
     "moins",
+    "mopeno",
     "Mopeno",
     "n",
     "nombre",
@@ -65,7 +66,9 @@
     "Pikachu",
     "placerons",
     "Plante",
+    "pokedex",
     "pokédex",
+    "pokemon",
     "pokemons",
     "pokémons",
     "pouvez",
@@ -100,5 +103,6 @@
     "Utilisez",
     "valide",
     "Vous"
-  ]
+  ],
+  "cSpell.language": "en,fr"
 }
