@@ -1,6 +1,6 @@
 {
   "name": "node-js-api",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "An awesome API Rest to handle some client.",
   "main": "app.js",
   "scripts": {
