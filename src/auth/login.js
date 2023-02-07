@@ -11,10 +11,9 @@ module.exports = (app) => {
       });
       if (!user) {
         return res
-          .status(404)
+          .status(401)
           .json({ message: "L'utilisateur demandé n'existe pas." });
       }
-
       const isPasswordValid = await bcrypt.compare(
         req.body.password,
         user.password
@@ -28,7 +27,7 @@ module.exports = (app) => {
       const token = jwt.sign({ userId: user.id }, privateKey, {
         expiresIn: "12h",
       });
-      return res.json({
+      return res.status(200).json({
         message: "L'utilisateur a été connecté avec succès",
         data: user,
         token,
