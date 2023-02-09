@@ -30,8 +30,10 @@ const initDb = async () => {
     username: "mopeno",
     password: hashedPassword,
   });
+  // console.log(createdPokemons);
+  // console.log(createdUser);
 
-  console.log("The database was successfully initialized!");
+  console.log("La base de donnée a bien été initialisée!");
 };
 
 // Exportation de module

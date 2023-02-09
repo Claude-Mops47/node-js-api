@@ -25,13 +25,9 @@ module.exports = (app) => {
           .json({ message: "Le mot de passe est incorrect." });
       }
 
-      const token = jwt.sign(
-        { userId: user.id },
-        process.env.ACCESS_TOKEN_SECRET,
-        {
-          expiresIn: "1800s",
-        }
-      );
+      const token = jwt.sign({ userId: user.id }, privateKey, {
+        expiresIn: "3600s",
+      });
       return res.status(200).json({
         message: "L'utilisateur a été connecté avec succès",
         data: user,

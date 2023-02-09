@@ -14,7 +14,7 @@ module.exports = (app) => {
         return Pokemon.destroy({
           where: { id: pokemon.id },
         }).then((_) => {
-          const message = `Le pokemon avec l'identifiant nº${pokemonDelete.id} a bien été supprimé.`;
+          const message = `Le pokemon avec l'identifiant nº ${pokemonDelete.id} a bien été supprimé.`;
           res.json({ message, data: pokemonDelete });
         });
       })
