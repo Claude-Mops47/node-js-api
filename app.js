@@ -14,7 +14,8 @@ app
   .use(favicon(__dirname + "/egg.ico"))
   .use(morgan("dev"))
   .use(cors())
-  .use(bodyParser.json());
+  .use(bodyParser.json())
+  .use(express.urlencoded({ extended: true }));
 
 sequelize.initDb();
 
