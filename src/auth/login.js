@@ -2,6 +2,7 @@ const { User } = require("../db/sequelize");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const privateKey = require("../auth/private_key");
+require("dotenv").config();
 
 module.exports = (app) => {
   app.post("/api/login", async (req, res) => {
@@ -24,9 +25,13 @@ module.exports = (app) => {
           .json({ message: "Le mot de passe est incorrect." });
       }
 
-      const token = jwt.sign({ userId: user.id }, privateKey, {
-        expiresIn: "12h",
-      });
+      const token = jwt.sign(
+        { userId: user.id },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "1800s",
+        }
+      );
       return res.status(200).json({
         message: "L'utilisateur a été connecté avec succès",
         data: user,
