@@ -17,7 +17,7 @@ module.exports = (req, res, next) => {
 
   try {
     // Split and extract token from authorization header
-    const token = authorizationHeader.split(" ")[1];
+    const token = authorizationHeader && authorizationHeader.split(" ")[1];
     // Decode token using built-in verify function
     const decoderToken = jwt.verify(token, privateKey);
     // Get userId from decoded token

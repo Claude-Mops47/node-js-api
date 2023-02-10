@@ -24,21 +24,22 @@ module.exports = (app) => {
           .json({ message: "Le mot de passe est incorrect." });
       }
       if (user.userType === "admin") {
-        return res
-          .status(401)
-          .json({
-            message: "Les administrateurs ne peuvent pas se connecter ici.",
-          });
+        return res.status(401).json({
+          message: "Les administrateurs ne peuvent pas se connecter ici.",
+        });
       }
 
       const token = jwt.sign({ userId: user.id }, privateKey, {
         expiresIn: "3600s",
       });
-      return res.status(200).json({
-        message: "L'utilisateur a été connecté avec succès",
-        data: user,
-        token,
-      });
+      return res
+        .cookie("authToken", token, { httpOnly: true })
+        .status(200)
+        .json({
+          message: "L'utilisateur a été connecté avec succès",
+          data: user,
+          token,
+        });
     } catch (error) {
       return res.json({
         message:
