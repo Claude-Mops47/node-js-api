@@ -2,7 +2,6 @@ const { User } = require("../db/sequelize");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const privateKey = require("../auth/private_key");
-require("dotenv").config();
 
 module.exports = (app) => {
   app.post("/api/login", async (req, res) => {
@@ -23,6 +22,13 @@ module.exports = (app) => {
         return res
           .status(401)
           .json({ message: "Le mot de passe est incorrect." });
+      }
+      if (user.userType === "admin") {
+        return res
+          .status(401)
+          .json({
+            message: "Les administrateurs ne peuvent pas se connecter ici.",
+          });
       }
 
       const token = jwt.sign({ userId: user.id }, privateKey, {

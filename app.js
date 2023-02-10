@@ -5,6 +5,8 @@ const sequelize = require("./src/db/sequelize");
 const cors = require("cors");
 const morgan = require("morgan");
 
+require("dotenv").config();
+
 // Sever
 const app = express();
 const portNumber = process.env.PORT || 3001;
@@ -14,8 +16,8 @@ app
   .use(favicon(__dirname + "/egg.ico"))
   .use(morgan("dev"))
   .use(cors())
-  .use(bodyParser.json())
-  .use(express.urlencoded({ extended: true }));
+  .use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
 sequelize.initDb();
 
@@ -44,6 +46,12 @@ app.use(({ res }) => {
     "Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.";
   res.status(404).json({ message });
 });
+
+const databaseUrl = process.env.DATABASE_URL;
+const apiKey = process.env.API_KEY;
+
+console.log(databaseUrl); // affiche "mongodb://localhost:27017/myapp"
+console.log(apiKey); // affiche "abcdefghijklmnopqrstuvwxyz"
 
 app.listen(portNumber, () =>
   console.log(
