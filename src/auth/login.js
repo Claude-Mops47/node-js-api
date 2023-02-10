@@ -6,6 +6,7 @@ const privateKey = require("../auth/private_key");
 module.exports = (app) => {
   app.post("/api/login", async (req, res) => {
     try {
+      // find user
       const user = await User.findOne({
         where: { username: req.body.username },
       });
