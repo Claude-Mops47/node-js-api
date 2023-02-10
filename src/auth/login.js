@@ -23,9 +23,9 @@ module.exports = (app) => {
           .status(401)
           .json({ message: "Le mot de passe est incorrect." });
       }
-      if (user.userType === "admin") {
+      if (user.userType === "user") {
         return res.status(401).json({
-          message: "Les administrateurs ne peuvent pas se connecter ici.",
+          message: "Les simples utilisateurs ne peuvent pas se connecter ici.",
         });
       }
 
