@@ -28,6 +28,7 @@ const initDb = async () => {
   const hashedPassword = await bcrypt.hash(pass, 10);
   const createdUser = await User.create({
     username: "mopeno",
+    userType: "admin",
     password: hashedPassword,
   });
   // console.log(createdPokemons);
