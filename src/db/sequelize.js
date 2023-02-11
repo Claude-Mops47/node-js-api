@@ -4,14 +4,17 @@ const UserModel = require("../models/user");
 const pokemons = require("./mock-pokemon");
 const bcrypt = require("bcrypt");
 
+require("dotenv").config();
+
 let sequelize;
 
 const logging = process.env.NODE_ENV === "production" ? false : true;
+console.log(logging);
 
 sequelize = new Sequelize("pokedex", "root", "Secret Key", {
   host: "localhost",
   dialect: "mysql",
-  logging: false,
+  logging: logging,
 });
 
 const Pokemon = PokemonModel(sequelize, DataTypes);
