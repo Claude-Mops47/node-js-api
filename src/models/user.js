@@ -17,14 +17,22 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     userType: {
-      type: DataTypes.ENUM,
-      values: ["admin", "user"],
+      type: DataTypes.ENUM(validTypes),
+      // values: ["admin", "user"],
       defaultValue: "user",
       validate: {
         isTypeValid(value) {
           if (!value) {
             throw new Error("Un utilisateur doit au moins avoir un type.");
           }
+          const types = value.split(",");
+          types.forEach((type) => {
+            if (!validTypes.includes(type)) {
+              throw new Error(
+                `Le type d'un utilisateur doit appartenir à la liste suivante : ${validTypes}`
+              );
+            }
+          });
         },
       },
     },
