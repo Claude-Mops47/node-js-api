@@ -18,7 +18,7 @@ module.exports = (Sequelize, DataTypes) => {
     },
     userType: {
       type: DataTypes.ENUM(validTypes),
-      // values: ["admin", "user"],
+      values: ["admin", "user"],
       defaultValue: "user",
       validate: {
         isTypeValid(value) {
