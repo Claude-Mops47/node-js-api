@@ -25,13 +25,6 @@ module.exports = (Sequelize, DataTypes) => {
           if (!value) {
             throw new Error("Un utilisateur doit au moins avoir un type.");
           }
-          value.split(",").forEach((type) => {
-            if (!validTypes.includes(type)) {
-              throw new Error(
-                `Le type d'un utilisateur doit appartenir à la liste suivante : ${validTypes}`
-              );
-            }
-          });
         },
       },
     },
