@@ -6,6 +6,7 @@ const privateKey = require("../auth/private_key");
 module.exports = (app) => {
   app.post("/api/register", async (req, res) => {
     try {
+      const type = req.query.type;
       // Vérifier si les informations d'inscription sont valides
       if (!req.body.username || !req.body.password) {
         return res.status(400).json({
@@ -29,6 +30,7 @@ module.exports = (app) => {
       // Enregistre l'utilisateur dans la base de données
       const user = await User.create({
         username: req.body.username,
+        userType: type,
         password: hash,
       });
 

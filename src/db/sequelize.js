@@ -8,6 +8,7 @@ require("dotenv").config();
 
 let sequelize;
 
+
 const logging = process.env.NODE_ENV === "production" ? false : true;
 console.log(logging);
 
