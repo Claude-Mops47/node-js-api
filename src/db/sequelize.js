@@ -8,9 +8,8 @@ require("dotenv").config();
 
 let sequelize;
 
-
 const logging = process.env.NODE_ENV === "production" ? false : true;
-console.log(logging);
+// console.log(logging);
 
 sequelize = new Sequelize("pokedex", "root", "Secret Key", {
   host: "localhost",
