@@ -23,7 +23,6 @@ module.exports = (Sequelize, DataTypes) => {
       validate: {
         isTypeValid(value) {
           if (!value) {
-            // err
             throw new Error("Un utilisateur doit au moins avoir un type.");
           }
           const types = value.split(",");
