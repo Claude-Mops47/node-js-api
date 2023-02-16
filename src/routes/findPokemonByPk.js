@@ -6,9 +6,12 @@ module.exports = (app) => {
     Pokemon.findByPk(req.params.id)
       .then((pokemon) => {
         if (pokemon === null) {
-          const message =
-            "Le pokemon demandé n'existe pas. Réessayez avec un autre identifiant";
-          return res.status(404).json({ message });
+          return res
+            .status(404)
+            .json({
+              message:
+                "Le pokemon demandé n'existe pas. Réessayez avec un autre identifiant",
+            });
         }
         const message = "Un pokemon a bien été trouvé.";
         res.json({ message, data: pokemon });
