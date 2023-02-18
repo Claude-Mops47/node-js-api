@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const sequelize = require("./src/db/sequelize");
 const cors = require("cors");
 const morgan = require("morgan");
+// morgan est un middleware qui repertorie les trafic
 
 // Sever
 const app = express();
