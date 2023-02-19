@@ -5,7 +5,7 @@ const sequelize = require("./src/db/sequelize");
 const cors = require("cors");
 const morgan = require("morgan");
 // morgan est un middleware qui repertorie les trafic
-
+// c'est important d'ajouter les commentaires
 // Sever
 const app = express();
 const portNumber = process.env.PORT || 3001;
