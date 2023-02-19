@@ -1,7 +1,8 @@
 const { User } = require("../../db/sequelize");
+const auth = require("../auth");
 
 module.exports = (app) => {
-  app.get("/api/users", (req, res) => {
+  app.get("/api/users", auth, (req, res) => {
     User.findAll()
       .then((users) => {
         if (!users) {

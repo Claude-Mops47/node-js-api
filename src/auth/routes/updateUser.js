@@ -1,9 +1,10 @@
 const { User } = require("../../db/sequelize");
 
 const bcrypt = require("bcrypt");
+const auth = require("../auth");
 
 module.exports = (app) => {
-  app.patch("/api/users/:id", async (req, res) => {
+  app.patch("/api/users/:id", auth, async (req, res) => {
     try {
       const user = await User.findByPk(req.params.id);
       if (!user) {

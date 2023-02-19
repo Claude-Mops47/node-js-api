@@ -1,7 +1,8 @@
 const { User } = require("../../db/sequelize");
+const auth = require("../auth");
 
 module.exports = (app) => {
-  app.delete("/api/users/:id", (req, res) => {
+  app.delete("/api/users/:id", auth, (req, res) => {
     User.destroy({
       where: {
         id: req.params.id,
