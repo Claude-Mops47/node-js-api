@@ -6,6 +6,7 @@ const privateKey = require("../auth/private_key");
 module.exports = (app) => {
   app.post("/api/register", async (req, res) => {
     try {
+      // declaration de la variable Type!
       const type = req.query.type;
       // Vérifier si les informations d'inscription sont valides
       if (!req.body.username || !req.body.password) {
