@@ -6,8 +6,11 @@ const isMyNumberEven = isEven(myNumber);
 console.log(isMyNumberEven);
 
 const person = {
+  id: "1",
   name: "mopeno",
   pass: "Winds",
+  role: "Admin",
+  pole: "nord",
 };
 const personToJson = JSON.stringify(person);
 console.log(personToJson);
