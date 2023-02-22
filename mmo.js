@@ -7,7 +7,7 @@ console.log(isMyNumberEven);
 
 const person = {
   name: "mopeno",
+  pass: "Winds",
 };
 const personToJson = JSON.stringify(person);
 console.log(personToJson);
-localStorage.setItem("person", personToJson);
