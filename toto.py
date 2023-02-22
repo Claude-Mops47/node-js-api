@@ -1,5 +1,4 @@
 import sys
-import math
 from contextlib import redirect_stderr
 
 def find_pair1(number, k):
@@ -58,6 +57,6 @@ def test_find_pair():
 
 
 if __name__ == "__main__":
-    # test_count_frequencies()
+    test_count_frequencies()
     test_find_pair()
-    # main()
+    main()
