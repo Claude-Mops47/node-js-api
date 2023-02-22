@@ -5,7 +5,7 @@ const pokemons = require("./mock-pokemon");
 const bcrypt = require("bcrypt");
 
 require("dotenv").config();
-
+// initialisation de la base
 let sequelize;
 
 const logging = process.env.NODE_ENV === "production" ? false : true;
