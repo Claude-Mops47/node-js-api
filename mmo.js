@@ -1,8 +1,9 @@
 function isEven(number) {
   return number % 2 == 0;
 }
-const myNumber = 23456;
+const myNumber = 23;
 const isMyNumberEven = isEven(myNumber);
+console.log(isEven);
 console.log(isMyNumberEven);
 
 const person = {
