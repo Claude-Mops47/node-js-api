@@ -3,7 +3,7 @@ function isEven(number) {
 }
 const myNumber = 23;
 const isMyNumberEven = isEven(myNumber);
-console.log(isEven);
+// console.log(isEven);
 console.log(isMyNumberEven);
 
 const person = {
