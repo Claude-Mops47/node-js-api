@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const sequelize = require("./src/db/sequelize");
 const cors = require("cors");
 const morgan = require("morgan");
+const helmet = require("helmet");
 // morgan est un middleware qui répertorie les trafic
 // Sever
 const app = express();
@@ -16,6 +17,22 @@ app
   .use(cors())
   .use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "font-src": ["'self'", "external-website.com"],
+      "style-src": null,
+    },
+  })
+
+  // helmet.hsts({
+  //   // 60 days
+  //   maxAge: 86400,
+  //   //
+  //   includeSubDomains: false,
+  // })
+);
 
 sequelize.initDb();
 
