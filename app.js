@@ -24,14 +24,13 @@ app.use(
       "font-src": ["'self'", "external-website.com"],
       "style-src": null,
     },
-  })
+  }),
 
-  // helmet.hsts({
-  //   // 60 days
-  //   maxAge: 86400,
-  //   //
-  //   includeSubDomains: false,
-  // })
+  helmet.hsts({
+    // 60 days
+    maxAge: 86400,
+    includeSubDomains: false,
+  })
 );
 
 sequelize.initDb();
