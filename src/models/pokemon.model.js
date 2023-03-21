@@ -1,17 +1,26 @@
-const { Sequelize } = require("sequelize");
-const validTypes = require("./listValidTypes");
+const validTypes = [
+  "Plante",
+  "Poison",
+  "Feu",
+  "Insecte",
+  "Vol",
+  "Normal",
+  "Electrik",
+  "Fée",
+  "Eau",
+];
 
-module.exports = (sequelize, DataTypes) => {
-  return sequelize.define(
+module.exports = (sequelize, Sequelize) => {
+  const Pokemon = sequelize.define(
     "Pokemon",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         // Verification name unique dans la base de données.
         unique: { msg: "Le nom est déjà pris." },
@@ -23,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       hp: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         // Validation avant d'envoyer la requête à la base de données.
         validate: {
@@ -42,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       cp: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         // Validation avant d'envoyer la requête à la base de données.
         validate: {
@@ -61,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       picture: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         // Validation avant d'envoyer la requête à la base de données.
         validate: {
@@ -70,7 +79,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       types: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         get() {
           return this.getDataValue("types").split(",");
@@ -107,4 +116,5 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: false,
     }
   );
+  return Pokemon;
 };

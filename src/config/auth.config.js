@@ -1,7 +1,6 @@
 // Import required packages
 const jwt = require("jsonwebtoken");
-const privateKey = require("../auth/private_key");
-
+require("dotenv").config();
 // Middleware to check authorization header on incoming request
 module.exports = (req, res, next) => {
   // Get authorization header from incoming request
@@ -17,11 +16,9 @@ module.exports = (req, res, next) => {
 
   try {
     // Split and extract token from authorization header
-    const token = authorizationHeader && authorizationHeader.split(" ")[1];
+    const [, token] = authorizationHeader.split(" ");
     // Decode token using built-in verify function
-    const decoderToken = jwt.verify(token, privateKey);
-    // Get userId from decoded token
-    const userId = decoderToken.userId;
+    const { userId } = jwt.verify(token, process.env.API_KEY);
     // Check if incoming request userId matches the one from decodedToken, else return 401
     if (req.body.userId && req.body.userId !== userId) {
       return res
