@@ -48,7 +48,7 @@ app.use(({ res }) => {
     "Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.";
   res.status(404).json({ message });
 });
-
+// lister
 const portNumber = process.env.PORT || 3001;
 app.listen(portNumber, () =>
   console.log(`Serveur en cours d'exécution sur le port: ${portNumber}.`)
