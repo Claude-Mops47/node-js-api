@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
 require("./src/routes/auth.routes")(app);
 require("./src/routes/user.routes")(app);
 require("./src/routes/pokemon.routes")(app);
-
+//
 // Handle 404 error
 app.use(({ res }) => {
   const message =
